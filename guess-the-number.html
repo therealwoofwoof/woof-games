@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: lime;
+            background-color: #4f7043;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number!</h1>
+    <select id="dog">
+        <option value="10">Up to 10</option>
+        <option value="100">Up to 100</option>
+        <option value="1000">Up to 1000</option>
+    </select>
+    <button onclick="start()">Start</button><br><br>
+    <input type="number" id="woof"><br><br>
+    <button type="button" onclick="guess()">Guess the Number!</button>
+    <p id="hint">Click the Start button to begin.</p>
+    <p id="time"></p>
+    <script>
+        let time = 0;
+        let dog;
+        let waf;
+        const hint = document.getElementById("hint");
+        const timeE = document.getElementById("time");
+
+        function start() {
+            time = 0;
+            dog = Number(document.getElementById("dog").value);
+            waf = Math.floor(Math.random() * dog) + 1;
+            hint.innerText = "Game Started! Enter a number.";
+            document.getElementById("time").innerText = "";
+            console.log("Player has started game");
+        }
+
+        function guess() {
+            time += 1;
+            let woof = Number(document.getElementById("woof").value);
+
+            if (woof === waf) {
+                hint.innerText = "Correct! You guessed the number. Click the Start button to play again.";
+                if (time > 1) {
+                    timeE.innerText = `It took you ${time} guesses.`;
+                } else {
+                    timeE.innerText = `It took you ${time} guess.`;
+                }
+                console.log("Player guess was correct");
+            } else if (woof < waf) {
+                hint.innerText = "Too low!";
+                console.log("Player guess was too low");
+            } else if (woof > waf) {
+                hint.innerText = "Too high!";
+                console.log("Player guess was too high");
+            }
+        };
+    </script>
+</body>
+</html>

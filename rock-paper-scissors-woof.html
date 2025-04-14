@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: lime;
+            background-color: #4f7043;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock Paper Scissors Woof!</h1>
+    <p>Try to beat the website!</p>
+    <label for="woof">Your choice:</label>
+    <select id="woof">
+        <option value="Rock">Rock</option>
+        <option value="Paper">Paper</option>
+        <option value="Scissors">Scissors</option>
+    </select>
+    <button onclick="play()">Play</button>
+    <p id="dog"></p>
+    <p id="winner"></p>
+    <script>
+        function play() {
+            const woof = document.getElementById("woof").value;
+            const dog = document.getElementById("dog");
+            const items = ["Rock", "Paper", "Scissors"];
+            const waf = items[Math.floor(Math.random() * 3)];
+            const winner = document.getElementById("winner");
+            winner.innerText = "";
+
+            dog.innerText = "Rock,";
+            setTimeout(() => {
+                dog.innerText = "Paper,";
+            }, 500);
+            setTimeout(() => {
+                dog.innerText = "Scissors,";
+            }, 1000);
+            setTimeout(() => {
+                dog.innerText = "Woof!";
+                if (woof === waf) {
+                    winner.innerText = `${waf}. Tie!`;
+                    console.log("Tie");
+                } else if (
+                    (woof === "Rock" && waf === "Scissors") ||
+                    (woof === "Paper" && waf === "Rock") ||
+                    (woof === "Scissors" && waf === "Paper")
+                ) {
+                    winner.innerText = `${waf}. You win!`;
+                    console.log("You win");
+                } else {
+                    winner.innerText = `${waf}. Website Wins!`;
+                    console.log("Website Wins");
+                }
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
